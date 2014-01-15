@@ -2,8 +2,8 @@ require 'rubygems'
 require 'net/http'
 require 'selenium-webdriver'
 require 'json'
-require './unit-testing/lcov-file.rb'
-require './unit-testing/rake-helper.rb'
+require './rakejtd/lcov-file.rb'
+require './rakejtd/rake-helper.rb'
 
 $params = {
 	:jtd_runnerMode => OptionArg( "runnerMode", "QUIET" ),
@@ -39,7 +39,7 @@ CAPTURE_URL         = "#{$params[ :server ]}/capture"
 #paths to required files
 CONFIG_PATH        = "js-test-driver-rt.conf"
 PRELUDE_PATH       = "script-tests/prelude.js"
-JTD_JAR_PATH       = "unit-testing/JsTestDriver-1.3.3d.jar"
+JTD_JAR_PATH       = "rakejtd/JsTestDriver-1.3.3d.jar"
 COVERAGE_FILE_NAME = "jsTestDriver.conf-coverage.dat"
 
 #jstestdriver commands
@@ -380,7 +380,7 @@ def shutDown
 	end
 
 	if( File.exists?( CONFIG_PATH ) )
-		File.delete( CONFIG_PATH )
+		#File.delete( CONFIG_PATH )
 	end
 
 	if( File.exists?( PRELUDE_PATH ) )
@@ -475,6 +475,6 @@ eos
 $text_coverage_plugin = <<-eos
 plugin:
   - name: "coverage"
-    jar: "unit-testing/plugins/coverage-1.3.5.jar"
+    jar: "rakejtd/plugins/coverage-1.3.5.jar"
     module: "com.google.jstestdriver.coverage.CoverageModule"
 eos
